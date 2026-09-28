@@ -3,162 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>glam_era40 - Online Shop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>glam_era40</title>
     <style>
         :root {
-            --primary-color: #ff6584;
-            --primary-dark: #e04868;
-            --secondary-color: #ffeef2;
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --white: #ffffff;
-            --gray-bg: #f9fafb;
-            --transition: all 0.3s ease;
+            --primary-color: #ff3366;
+            --primary-dark: #e02454;
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --text-color: #222222;
+            --text-light: #777777;
+            --border-color: #eeeeee;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--gray-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
         }
 
-        /* Header */
         header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+        h1 {
+            font-size: 1.8rem;
             color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            letter-spacing: 1px;
         }
 
-        .instagram-badge {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .instagram-badge:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #fff 100%);
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid #edf2f7;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 20px;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
-            background: var(--white);
-            border-radius: 12px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
-            transition: var(--transition);
             display: flex;
             flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .product-img-container {
             width: 100%;
             height: 250px;
-            background: #f7fafc;
+            background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             overflow: hidden;
+            position: relative;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-img {
+            color: var(--text-light);
             font-size: 3rem;
-            color: var(--primary-color);
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            justify-content: space-between;
         }
 
-        .product-title {
-            font-size: 1rem;
+        .product-name {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
             font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            color: var(--text-color);
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -166,30 +113,46 @@
         }
 
         .product-price {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 1.25rem;
-            margin-top: auto;
+            margin-bottom: 15px;
         }
 
-        .btn {
+        .buy-btn {
             background-color: var(--primary-color);
-            color: var(--white);
+            color: white;
             border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
             width: 100%;
-            text-align: center;
-            display: inline-block;
-            text-decoration: none;
+            transition: background-color 0.2s;
         }
 
-        .btn:hover {
+        .buy-btn:hover {
             background-color: var(--primary-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+
+        .instagram-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .instagram-link:hover {
+            text-decoration: underline;
         }
 
         /* Modal */
@@ -200,382 +163,344 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0,0,0,0.5);
             z-index: 1000;
-            justify-content: center;
             align-items: center;
-            padding: 1rem;
-        }
-
-        .modal.active {
-            display: flex;
+            justify-content: center;
+            padding: 20px;
         }
 
         .modal-content {
-            background: var(--white);
-            width: 100%;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
             max-width: 500px;
-            border-radius: 16px;
-            padding: 2rem;
+            width: 100%;
             position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
-        .close-modal {
+        .close-btn {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 15px;
+            right: 20px;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-light);
-            transition: var(--transition);
         }
 
-        .close-modal:hover {
-            color: var(--text-dark);
-        }
-
-        .modal-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h2 {
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
             font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
         }
 
-        .modal-header p {
-            color: var(--text-light);
-            font-size: 0.9rem;
+        .payment-details {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
         }
 
-        .baridimob-box {
-            background: var(--secondary-color);
-            border: 1px dashed var(--primary-color);
-            padding: 1.25rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-        }
-
-        .baridimob-box h3 {
-            color: var(--primary-dark);
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
+        .payment-details p {
+            margin-bottom: 8px;
             font-size: 0.95rem;
         }
 
-        .info-label {
-            color: var(--text-light);
-        }
-
-        .info-value {
+        .payment-details span {
             font-weight: 600;
-            color: var(--text-dark);
+            user-select: all;
         }
 
         .instructions {
-            margin-bottom: 1.5rem;
-        }
-
-        .instructions h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 20px;
         }
 
         .instructions ol {
-            padding-left: 1.2rem;
-            color: var(--text-light);
+            padding-left: 20px;
             font-size: 0.9rem;
+            color: var(--text-light);
         }
 
         .instructions li {
-            margin-bottom: 0.3rem;
+            margin-bottom: 5px;
         }
 
         .whatsapp-btn {
+            display: block;
             background-color: #25D366;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
         }
 
         .whatsapp-btn:hover {
-            background-color: #128C7E;
+            background-color: #1ebe5d;
         }
 
-        /* Footer */
-        footer {
-            background: var(--white);
-            border-top: 1px solid #edf2f7;
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .footer-text {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
-            .navbar {
-                padding: 1rem;
+            .product-img-container {
+                height: 180px;
             }
-            .container {
-                padding: 2rem 1rem;
+            .product-info {
+                padding: 10px;
+            }
+            .product-name {
+                font-size: 0.85rem;
+            }
+            .product-price {
+                font-size: 1rem;
+            }
+            .buy-btn {
+                padding: 8px;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
-        <div class="navbar">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-gem"></i> glam_era40
-            </a>
-            <a href="https://instagram.com/glam_era40" target="_blank" class="instagram-badge">
-                <i class="fa-brands fa-instagram"></i> @glam_era40
-            </a>
-        </div>
+        <h1>glam_era40</h1>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to glam_era40</h1>
-        <p>Online Shop - Discover our exclusive collection</p>
-    </section>
-
-    <!-- Main Container -->
     <div class="container">
-        <h2 class="section-title">Our Products</h2>
-        
-        <div class="product-grid" id="productGrid">
-            <!-- Products will be injected by JavaScript -->
+        <div class="product-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">🩷</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Disponible chez nous🙂‍↔️, très bon qualité 😝🩷</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Disponible chez nous🙂‍↔️, très bon qualité 😝🩷', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">🩷</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">🩷😍</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('🩷😍', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">✨</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">100elf😍✨</div>
+                        <div class="product-price">100 DA</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('100elf😍✨', '100 DA')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">🩷</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Ooh my god😍🩷🩷</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Ooh my god😍🩷🩷', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">❤️</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Ghir 120alf🥲❤️</div>
+                        <div class="product-price">120 DA</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Ghir 120alf🥲❤️', '120 DA')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">❤️</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Ghir b 80alf😍❤️</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Ghir b 80alf😍❤️', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">😂</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Akhlelele😂😍🩷</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Akhlelele😂😍🩷', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">💔</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">💔🥲😂.</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('💔🥲😂.', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">😩</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Galbi rah medhrar😩😂🩷</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Galbi rah medhrar😩😂🩷', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">🩷</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">1200da/1500da😍sel3a louz🩷</div>
+                        <div class="product-price">1200 DA</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('1200da/1500da😍sel3a louz🩷', '1200 DA')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">🩷</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Ghir b 120alf😍🩷</div>
+                        <div class="product-price">120 DA</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Ghir b 120alf😍🩷', '120 DA')">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <span class="placeholder-img">🩷</span>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Cheba ya cheba🩷😍</div>
+                        <div class="product-price">Contact for price</div>
+                    </div>
+                    <button class="buy-btn" onclick="openModal('Cheba ya cheba🩷😍', 'Contact for price')">Buy Now</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Payment Modal -->
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <div class="modal-header">
-                <h2>Complete Your Order</h2>
-                <p>Pay securely via BaridiMob</p>
-            </div>
+    <footer>
+        <a href="https://instagram.com/glam_era40" target="_blank" class="instagram-link">Instagram: @glam_era40</a>
+    </footer>
 
-            <div class="baridimob-box">
-                <h3><i class="fa-solid fa-wallet"></i> BaridiMob Details</h3>
-                <div class="info-row">
-                    <span class="info-label">RIP:</span>
-                    <span class="info-value">00799999002233445566</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">CCP:</span>
-                    <span class="info-value">0022334455</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Key:</span>
-                    <span class="info-value">66</span>
-                </div>
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>BaridiMob Payment</h2>
+            
+            <div class="payment-details">
+                <p><strong>RIP:</strong> <span id="ripText">00799999002233445566</span></p>
+                <p><strong>CCP:</strong> <span id="ccpText">0022334455</span></p>
+                <p><strong>Key:</strong> <span id="keyText">66</span></p>
             </div>
 
             <div class="instructions">
-                <h4>How to pay & confirm:</h4>
                 <ol>
                     <li>Open your BaridiMob application.</li>
-                    <li>Transfer the exact product amount to the RIP details provided above.</li>
-                    <li>Take a screenshot of the successful payment receipt.</li>
-                    <li>Click the WhatsApp button below to send us the receipt and confirm your order details.</li>
+                    <li>Transfer the exact amount to the RIP/CCP provided above.</li>
+                    <li>Take a screenshot of the payment receipt.</li>
+                    <li>Click the button below to send confirmation via WhatsApp.</li>
                 </ol>
             </div>
 
-            <a href="#" id="whatsappConfirmBtn" target="_blank" class="btn whatsapp-btn">
-                <i class="fa-brands fa-whatsapp"></i> Confirm via WhatsApp
-            </a>
+            <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">Confirm via WhatsApp</a>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">glam_era40</div>
-            <p class="footer-text">Online Shop • All rights reserved © 2024</p>
-            <a href="https://instagram.com/glam_era40" target="_blank" class="instagram-badge">
-                <i class="fa-brands fa-instagram"></i> Follow us on Instagram
-            </a>
-        </div>
-    </footer>
-
     <script>
-        const products = [
-            {
-                id: 1,
-                title: "🩷😍",
-                price: "Contact for price",
-                desc: "🩷😍",
-                icon: "fa-solid fa-heart"
-            },
-            {
-                id: 2,
-                title: "Disponible chez nous🙂‍↔️, très bon qualité 😝🩷",
-                price: "Contact for price",
-                desc: "Disponible chez nous🙂‍↔️, très bon qualité 😝🩷",
-                icon: "fa-solid fa-star"
-            },
-            {
-                id: 3,
-                title: "Ghir b 120alf😍🩷",
-                price: "120 DZD",
-                desc: "Ghir b 120alf😍🩷",
-                icon: "fa-solid fa-fire"
-            },
-            {
-                id: 4,
-                title: "Ghir b 80alf😍❤️",
-                price: "80 DZD",
-                desc: "Ghir b 80alf😍❤️",
-                icon: "fa-solid fa-gift"
-            },
-            {
-                id: 5,
-                title: "Ghir 120alf🥲❤️#lashes #algerienne🇩🇿",
-                price: "120 DZD",
-                desc: "Ghir 120alf🥲❤️#lashes #algerienne🇩🇿 #رموش_أسبوعية #khenchela #foryoupage",
-                icon: "fa-solid fa-eye"
-            },
-            {
-                id: 6,
-                title: "100elf😍✨",
-                price: "100 DZD",
-                desc: "100elf😍✨",
-                icon: "fa-solid fa-sparkles"
-            },
-            {
-                id: 7,
-                title: "Ooh my god😍🩷🩷",
-                price: "Contact for price",
-                desc: "Ooh my god😍🩷🩷",
-                icon: "fa-solid fa-face-surprise"
-            },
-            {
-                id: 8,
-                title: "Akhlelele😂😍🩷",
-                price: "Contact for price",
-                desc: "Akhlelele😂😍🩷",
-                icon: "fa-solid fa-face-grin-squint"
-            },
-            {
-                id: 9,
-                title: "1200da/1500da😍sel3a louz🩷",
-                price: "1200 DZD",
-                desc: "1200da/1500da😍sel3a louz🩷",
-                icon: "fa-solid fa-crown"
-            },
-            {
-                id: 10,
-                title: "💔🥲😂.",
-                price: "Contact for price",
-                desc: "💔🥲😂.",
-                icon: "fa-solid fa-face-laugh-tear"
-            },
-            {
-                id: 11,
-                title: "Cheba ya cheba🩷😍",
-                price: "Contact for price",
-                desc: "Cheba ya cheba🩷😍",
-                icon: "fa-solid fa-wand-magic-sparkles"
-            },
-            {
-                id: 12,
-                title: "Galbi rah medhrar😩😂🩷",
-                price: "Contact for price",
-                desc: "Galbi rah medhrar😩😂🩷",
-                icon: "fa-solid fa-heart-pulse"
-            }
-        ];
-
-        const productGrid = document.getElementById('productGrid');
-        const paymentModal = document.getElementById('paymentModal');
-        const closeModal = document.getElementById('closeModal');
-        const whatsappConfirmBtn = document.getElementById('whatsappConfirmBtn');
-
-        // Render Products
-        function renderProducts() {
-            productGrid.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <i class="${product.icon}"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">${product.title}</h3>
-                        <div class="product-price">${product.price}</div>
-                        <button class="btn" onclick="openModal('${product.title.replace(/'/g, "\\'")}', '${product.price}')">
-                            Buy Now
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Modal Logic
-        function openModal(productTitle, productPrice) {
-            paymentModal.classList.add('active');
+        function openModal(productName, productPrice) {
+            const modal = document.getElementById('paymentModal');
+            const whatsappLink = document.getElementById('whatsappLink');
             
-            // Format WhatsApp Message
-            const message = `Hello glam_era40! I would like to buy: *${productTitle}* (Price: ${productPrice}). Here is my BaridiMob payment receipt.`;
+            const message = `Hello glam_era40, I want to buy:\nProduct: ${productName}\nPrice: ${productPrice}\n\nHere is my BaridiMob payment receipt:`;
             const encodedMessage = encodeURIComponent(message);
             
-            // Assuming standard format or general support number placeholder, let's use a standard template pointing to the shop context
-            whatsappConfirmBtn.href = `https://wa.me/?text=${encodedMessage}`;
+            // Note: Replace with actual WhatsApp number if available, currently formatted for generic use
+            whatsappLink.href = `https://wa.me/?text=${encodedMessage}`;
+            
+            modal.style.display = 'flex';
         }
 
-        closeModal.addEventListener('click', () => {
-            paymentModal.classList.remove('active');
-        });
+        function closeModal() {
+            const modal = document.getElementById('paymentModal');
+            modal.style.display = 'none';
+        }
 
-        window.addEventListener('click', (e) => {
-            if (e.target === paymentModal) {
-                paymentModal.classList.remove('active');
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                closeModal();
             }
-        });
-
-        // Initialize
-        renderProducts();
+        }
     </script>
 </body>
 </html>

@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>glam_era40 - Online Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #ff3366;
-            --primary-light: #ff6699;
-            --bg-color: #fff0f5;
+            --primary-pink: #ff69b4;
+            --light-pink: #ffe4e1;
+            --dark-pink: #d81b60;
+            --accent-pink: #ff1493;
+            --bg-color: #fff9fb;
             --text-color: #333333;
-            --card-bg: #ffffff;
-            --nav-height: 60px;
+            --white: #ffffff;
+            --gray: #777777;
+            --light-gray: #f5f5f5;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -27,33 +32,32 @@
             overflow-x: hidden;
         }
 
-        /* Top Navigation */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: var(--nav-height);
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 1rem 5%;
             z-index: 1000;
         }
 
         .nav-brand {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-pink);
             text-decoration: none;
+            cursor: pointer;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             list-style: none;
         }
 
@@ -61,167 +65,198 @@
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
+            transition: color 0.3s;
             cursor: pointer;
-            transition: color 0.2s;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-color);
+            color: var(--primary-pink);
         }
 
-        /* Page Layout */
+        /* Pages Container */
         .page {
             display: none;
-            position: absolute;
-            top: var(--nav-height);
-            left: 0;
-            width: 100%;
-            min-height: calc(100vh - var(--nav-height));
-            padding: 2rem;
-            animation: fadeIn 0.3s ease-in-out;
+            min-height: 100vh;
+            padding: 100px 5% 60px 5%;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .page.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Landing Page */
+        /* LANDING PAGE */
         .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 4rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
         }
 
         .hero h1 {
             font-size: 3rem;
-            color: var(--primary-color);
+            color: var(--dark-pink);
             margin-bottom: 1rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
 
         .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
+            background-color: var(--primary-pink);
+            color: var(--white);
             padding: 0.8rem 2rem;
-            font-size: 1rem;
-            font-weight: bold;
             border-radius: 30px;
-            cursor: pointer;
             text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-            display: inline-block;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
         }
 
         .btn:hover {
-            background-color: var(--primary-light);
-            transform: scale(1.02);
+            background-color: var(--dark-pink);
+            transform: translateY(-2px);
         }
 
         .reviews-section {
-            max-width: 800px;
-            margin: 2rem auto;
-            width: 100%;
             text-align: center;
+            padding: 2rem 0;
         }
 
         .reviews-section h2 {
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
             color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+
+        .reviews-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .review-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            margin-bottom: 1rem;
-            font-style: italic;
-            color: #555;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            width: 300px;
+            border: 1px solid var(--light-pink);
         }
 
-        /* Products Page */
+        .review-card p {
+            font-style: italic;
+            color: var(--gray);
+        }
+
+        /* PRODUCTS PAGE */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            padding-bottom: 3rem;
         }
 
         .product-card {
-            background: var(--card-bg);
-            border-radius: 12px;
+            background: var(--white);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s;
+            justify-content: space-between;
+            border: 1px solid #eee;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
         }
 
-        .product-image {
+        .product-img-container {
             width: 100%;
-            height: 280px;
+            height: 300px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            background-color: #eee;
         }
 
         .product-info {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
+            padding: 1.5rem;
+            text-align: center;
         }
 
         .product-name {
             font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5krem;
+            color: var(--text-color);
+            height: 3rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
         .product-price {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-pink);
             margin-bottom: 1rem;
         }
 
-        /* Order Page */
-        .order-container {
-            max-width: 600px;
+        /* ORDER PAGE */
+        .order-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
             margin: 0 auto;
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            width: 100%;
-            margin-bottom: 3rem;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .order-container h2 {
+        @media(max-width: 768px) {
+            .order-wrapper {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .nav-links {
+                display: none; /* simple mobile fallback or keep flex */
+            }
+        }
+
+        .order-form h2, .payment-info h2 {
+            font-size: 1.5rem;
+            color: var(--dark-pink);
             margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            text-align: center;
         }
 
         .form-group {
@@ -232,6 +267,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .form-group input, .form-group select {
@@ -241,56 +277,63 @@
             border-radius: 8px;
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.3s;
         }
 
         .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
+            border-color: var(--primary-pink);
         }
 
-        .payment-box {
-            background: #fdf2f4;
-            border: 1px dashed var(--primary-light);
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
+        .payment-info {
+            background: var(--light-pink);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .payment-details {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-details p {
+            margin-bottom: 0.5rem;
             font-size: 0.95rem;
-            line-height: 1.5;
         }
 
-        .payment-box h3 {
-            font-size: 1rem;
-            color: var(--primary-color);
+        .payment-instructions ol {
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .payment-instructions li {
             margin-bottom: 0.5rem;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 1.5rem;
-            background: #ffffff;
+            padding: 2rem;
+            background: var(--white);
             border-top: 1px solid #eee;
-            margin-top: auto;
+            margin-top: 3rem;
         }
 
         footer a {
-            color: var(--primary-color);
+            color: var(--dark-pink);
             text-decoration: none;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            nav { padding: 0 1rem; }
-            .page { padding: 1rem; }
-            .order-container { padding: 1.5rem; }
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation Bar -->
     <nav>
-        <a class="nav-brand" onclick="showPage('home')">glam_era40</a>
+        <div class="nav-brand" onclick="showPage('home')">glam_era40</div>
         <ul class="nav-links">
             <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
             <li><a onclick="showPage('products')" id="nav-products">Products</a></li>
@@ -302,128 +345,134 @@
     <div id="page-home" class="page active">
         <div class="hero">
             <h1>glam_era40</h1>
-            <p>Welcome to our Online Shop! Discover our exclusive selection of trending items curated just for you. Quality products delivered straight to your door.</p>
-            <a class="btn" onclick="showPage('products')">Shop Now</a>
+            <p>Welcome to Online Shop! Discover our exclusive selection of trending items curated just for you. Shop the latest styles with ease and elegance.</p>
+            <button class="btn" onclick="showPage('products')">Shop Now</button>
         </div>
 
-        <div class="reviews-section">
+        <section class="reviews-section">
             <h2>Customer Reviews</h2>
-            <div class="review-card">
-                "No reviews yet"
+            <div class="reviews-container">
+                <div class="review-card">
+                    <p>"No reviews yet"</p>
+                </div>
             </div>
-        </div>
-
-        <footer>
-            Follow us on Instagram: <a href="https://instagram.com/glam_era40" target="_blank">@glam_era40</a>
-        </footer>
+        </section>
     </div>
 
     <!-- PRODUCTS PAGE -->
     <div id="page-products" class="page">
-        <div class="products-grid" id="product-grid-container">
-            <!-- Dynamically injected via JS -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="color: var(--dark-pink); font-size: 2.5rem;">Our Products</h1>
+            <p style="color: var(--gray);">Explore our handpicked collection</p>
         </div>
-        <footer>
-            Follow us on Instagram: <a href="https://instagram.com/glam_era40" target="_blank">@glam_era40</a>
-        </footer>
+        <div class="products-grid" id="products-grid">
+            <!-- Dynamically populated products -->
+        </div>
     </div>
 
     <!-- ORDER PAGE -->
     <div id="page-order" class="page">
-        <div class="order-container">
-            <h2>Complete Your Order</h2>
-            <form id="orderForm" onsubmit="submitOrder(event)">
-                <div class="form-group">
-                    <label for="productName">Product Name</label>
-                    <input type="text" id="productName" readonly required>
-                </div>
+        <div class="order-wrapper">
+            <div class="order-form">
+                <h2>Complete Your Order</h2>
+                <form id="whatsappForm" onsubmit="submitOrder(event)">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" readonly style="background-color: #f9f9f9; color: var(--gray);">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" id="customerName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="wilaya">Wilaya / City</label>
+                        <input type="text" id="wilaya" required placeholder="e.g. Algiers, Oran, Constantine...">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" value="1" min="1" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;"><i class="fab fa-whatsapp"></i> Confirm via WhatsApp</button>
+                </form>
+            </div>
 
-                <div class="form-group">
-                    <label for="customerName">Full Name</label>
-                    <input type="text" id="customerName" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required placeholder="Enter your phone number">
-                </div>
-
-                <div class="form-group">
-                    <label for="wilaya">Wilaya / City</label>
-                    <input type="text" id="wilaya" required placeholder="e.g. Algiers, Oran...">
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" value="1" min="1" required>
-                </div>
-
-                <div class="payment-box">
-                    <h3>BaridiMob Payment Details</h3>
+            <div class="payment-info">
+                <h2>BaridiMob Payment</h2>
+                <div class="payment-details">
                     <p><strong>RIP:</strong> 00799999002233445566</p>
                     <p><strong>CCP:</strong> 0022334455</p>
                     <p><strong>Key:</strong> 66</p>
-                    <hr style="margin: 8px 0; border: 0; border-top: 1px solid #f9c6d2;">
-                    <p style="font-size: 0.9rem;"><strong>Instructions:</strong> Transfer the total amount using BaridiMob, take a screenshot of your receipt, and attach it or mention it when confirming via WhatsApp.</p>
                 </div>
-
-                <button type="submit" class="btn" style="width: 100%;">Confirm via WhatsApp</button>
-            </form>
+                <div class="payment-instructions">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-color);">Step-by-Step Payment Instructions:</h3>
+                    <ol>
+                        <li>Open your BaridiMob application.</li>
+                        <li>Select "Make a Transfer" (Virement).</li>
+                        <li>Enter the RIP or CCP details provided above along with the Key.</li>
+                        <li>Enter the exact amount corresponding to your order.</li>
+                        <li>Confirm the transaction and take a screenshot of the receipt.</li>
+                        <li>Submit your order here and send the receipt via WhatsApp.</li>
+                    </ol>
+                </div>
+            </div>
         </div>
-        <footer>
-            Follow us on Instagram: <a href="https://instagram.com/glam_era40" target="_blank">@glam_era40</a>
-        </footer>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 glam_era40. All rights reserved. | <a href="https://instagram.com/glam_era40" target="_blank"><i class="fab fa-instagram"></i> @glam_era40</a></p>
+    </footer>
 
     <script>
         const products = [
-            { name: "🩷😍", price: "Contact for price", image: "https://scontent-ams2-1.cdninstagram.com/v/t51.82787-15/783205227_17898614013576744_6258387615486471338_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=Mzk2ODE3NjIxOTY2MDc4NDk3MA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMzA3Mi5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=SfI6kLSCbI4Q7kNvwHe0ECA&_nc_oc=AdocdWSq2EeloRxnHXdOuTrhYcT0JnCxki5hMKMKtG37VJzeRgYQwHYA7fDUb_ESF8BBYUhO-chOaCxzodu5LDOU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=WTwyrLTp0TLPA4e1YB-QDQ&_nc_ss=7a22e&oh=00_AQMeDfIg8SHr93jN4eTeZebeZiPLMosrv6MKHYI5b1wFZQ&oe=6AC0C814" },
-            { name: "Ghir b 80alf😍❤️", price: "Contact for price", image: "https://scontent-waw2-1.cdninstagram.com/v/t51.82787-15/806428375_17902254891576744_833500819527877082_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=104&ig_cache_key=Mzk4NDQzNDI5ODgzODcxODYxNTE3OTAyMjU0ODg4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=jXGwEgoSuE8Q7kNvwFttZtK&_nc_oc=AdoYLhOLbMRPjTcoLap8MONvpWhf4bkHpL-2nkNwCvQVdririltCAU8zz-uD5Lb7MRc&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-waw2-1.cdninstagram.com&_nc_gid=NvMhekVmfXAkdKwg8Cn7Rw&_nc_ss=7a22e&oh=00_AQOFGblTHmyq3yC5B20T9RBt5mOJC5_05dAnvwYlDUJIOQ&oe=6AC0B1A6" },
-            { name: "💔🥲😂.", price: "Contact for price", image: "https://scontent-lhr6-2.cdninstagram.com/v/t51.82787-15/806271285_17902174173576744_2061529964014738892_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ig_cache_key=Mzk4NDA1OTA1ODgzNzEwODEwNjE3OTAyMTc0MTY3NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=ukHtwzUvMFwQ7kNvwHvwram&_nc_oc=AdoozLUzNG7y4jOZKHVc53cu4yZwl3voGJdr9i7Bu1iRZaYw796yb09N1tCTD4Rbk0AG5EePEhdX930_iiadIyFw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lhr6-2.cdninstagram.com&_nc_gid=jNiHzvwAb4RxuGiCl7uI6w&_nc_ss=7a22e&oh=00_AQMayBF5_m1qXm7GpcxQ1vk0Dhy9EnGzWX1i42P5mmyZ7Q&oe=6AC0C089" },
-            { name: "Galbi rah medhrar😩😂🩷", price: "Contact for price", image: "https://scontent-muc2-1.cdninstagram.com/v/t51.82787-15/786827890_17899315866576744_5813729824801496665_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=111&ig_cache_key=Mzk3MTQ1ODA2ODczODkzNjkwNTE3ODk5MzE1ODYzNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjU3Ni5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=xNnedfz6leoQ7kNvwGFUom1&_nc_oc=Adoqfl3M-iE8vLO6OnwvrrH8X_ehrhBh9D5lj1hMuRuFu-KfZ2E8xrFQL8Fi0e3Tu-4&_nc_ad=z-m&_nc_cid=1005&_nc_zt=23&_nc_ht=scontent-muc2-1.cdninstagram.com&_nc_gid=iPg3_gDJegSa9WRZ1Qdq8w&_nc_ss=7a22e&oh=00_AQPdMJ3LKqOFYv2X3bPC561lSfWgTdy8MByP6Ke3QfQl3A&oe=6AC0E0D9" },
-            { name: "Ghir 120alf🥲❤️", price: "120 DA", image: "https://scontent-muc2-1.cdninstagram.com/v/t51.82787-15/825277056_17904804885576744_2643499100724783730_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&ig_cache_key=Mzk5NTY2OTExMTkxNDUyNTUzOTE3OTA0ODA0ODc5NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=zRjRBSKjZpMQ7kNvwEOebnK&_nc_oc=AdqCw0cSPzatRF5qQXDggagz2Jbx7UYlIRu0T7AKpzKWJ1GHBj3ESwbdU1xbHqxSsaULGa8H8al-7ZiHgRCoH0k7&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-muc2-1.cdninstagram.com&_nc_gid=5z78ZOWHAoloTAxijW89lg&_nc_ss=7a22e&oh=00_AQNTs6wRc1Yil1y7keS6_xVYEzQ6t7mMeB3Npqq-CxsCGA&oe=6AC0DEA4" },
-            { name: "1200da/1500da😍sel3a louz🩷", price: "1200 DA", image: "https://scontent-dus1-1.cdninstagram.com/v/t51.82787-15/777418577_17898205023576744_2621212603589882355_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ig_cache_key=Mzk2NjcyNTk3MDg1MzQxOTg5OTE3ODk4MjA1MDIwNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=HZKqO_ajamsQ7kNvwH8_sIn&_nc_oc=AdqlLnXx271XRj3wO12KxDGeSOX2V12TuRIIJ9xC6kqtM4bx_-t4HYB5L9995hecfh0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-dus1-1.cdninstagram.com&_nc_gid=5l258hP5juhz2OseJTJmYA&_nc_ss=7a22e&oh=00_AQPh8ZhGY_THQ8j4b-6LMljeiO0VJtH3kNxmI56TUqnFdA&oe=6AC0D8F4" },
-            { name: "Disponible chez nous🙂‍↔️, très bon qualité 😝🩷", price: "Contact for price", image: "https://scontent-ams2-1.cdninstagram.com/v/t51.82787-15/784693925_17899006824576744_6861212227963224028_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=Mzk3MDAxMjE0Nzk2NjcwMjIxMA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMzM5Ni5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=2ir74motCBEQ7kNvwFRxnq0&_nc_oc=AdpqzDdv11IRRAHBPGjr128DvLhf6B2oDJ6UtLWgjT0vF07P3jTr-CCMH5naKLCbU0s&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=277-NIIYq0Umo_0nyQfcfQ&_nc_ss=7a22e&oh=00_AQOhxXPJykhr2rmV0u3s2QMNf63q1-eeMy065uz8Pcv15w&oe=6AC0DE7E" },
-            { name: "Ghir b 120alf😍🩷", price: "120 DA", image: "https://instagram.fxds1-1.fna.fbcdn.net/v/t51.82787-15/790240131_17900377671576744_4263180396549356048_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=100&_nc_map=urlgen_bucketless&ig_cache_key=Mzk3NjE2MzI3MDE3MTU5NDI3ODE3OTAwMzc3NjY4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=hmdDf_ETBHwQ7kNvwFZUkmL&_nc_oc=AdqKBh_tXi4SUZeYWqf44KVMNcKxztk2OHoFKEaiAV538QHpCcP0IbzIxo8da889JuhXn7ydidCrUU-AC9XuWYIb&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fxds1-1.fna&_nc_gid=_-IWRomFntm7PfWgrj50mw&_nc_ss=7a22e&oh=00_AQOv53f8ZBOKRS67_Yhx1f4XnQjJ2gOvUDgpGeYB-R85WQ&oe=6AC0B17E" },
-            { name: "Ooh my god😍🩷🩷", price: "Contact for price", image: "https://scontent-gmp1-1.cdninstagram.com/v/t51.82787-15/786971497_17899385301576744_451320607728126681_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=103&ig_cache_key=Mzk3MTc1NTQ0Njc1NDcxOTkzMTE3ODk5Mzg1Mjk4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=UUlmB6WLGt0Q7kNvwE7XjtR&_nc_oc=AdqBJZoFmrQFSwWc7DzVaMEP3bWTdg3qUaNr2VIw5jDssmVFvtoSTRYisc9jh0zMsmI&_nc_ad=z-m&_nc_cid=1753&_nc_zt=23&_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_gid=G42b4lyWkMp6tcE2itPesw&_nc_ss=7a22e&oh=00_AQN2e7W68A242lUL1q7Qb6L06IBYld3-zbkg5fuQGMIPzg&oe=6AC0D521" },
-            { name: "Cheba ya cheba🩷😍", price: "Contact for price", image: "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/777381618_17898614298576744_3672290953556770459_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ig_cache_key=Mzk2ODE3NjYwMzU0ODY3OTE2MDE3ODk4NjE0MjkyNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=s3DeK0AeI40Q7kNvwGiGM_R&_nc_oc=Adovvzednuhkl4z28wxBA_kMBqH7nlQxzbGb4sIDWJ4leAuKdogWaTcHZcv0LKS6UW_Z7F7QzQC4lZrf3JrRy-B8&_nc_ad=z-m&_nc_cid=1698&_nc_zt=23&_nc_ht=scontent-nrt6-1.cdninstagram.com&_nc_gid=hUGG52Cvy4FckbxYRZBxJQ&_nc_ss=7a22e&oh=00_AQPHb9QyHciNJF-P3oZ8q12KuYULC4uiaoPV-Mx_lBeydg&oe=6AC0BB14" },
-            { name: "Akhlelele😂😍🩷", price: "Contact for price", image: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/791245674_17900535417576744_6015253812744676184_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&ig_cache_key=Mzk3Njg4OTI3MDIyODUwMjIxOTE3OTAwNTM1NDExNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=Mj6ImOGYMrQQ7kNvwHjckk3&_nc_oc=Adqdpf7zS_fNohhHF4mRZIkzqeY07iMwWf24vLFlWyP1aSlNMK7--GG6Y30Zm2uDMgs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=HZSi0edPPKZd0QclenWOcg&_nc_ss=7a22e&oh=00_AQMc9CiEuUgwDlSJFghSfJ_kTKEfzGS9nozZShvQ3Btrog&oe=6AC0D676" },
-            { name: "100elf😍✨", price: "100 DA", image: "https://instagram.fgdl17-1.fna.fbcdn.net/v/t51.82787-15/805876875_17902173870576744_3569723152864134102_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ig_cache_key=Mzk4NDA1ODI0MzEyNjY5OTI4MTE3OTAyMTczODY0NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=TSrnGzQz7nEQ7kNvwH-_vVX&_nc_oc=AdqhdR6bfZs3cOapdQAZjAmMNjyJTAQeD0x0iFMPFAHF_jYSMYUxuPc9gLH_gNHwvIpo66REtjD5KXn8lhY5ev9f&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fgdl17-1.fna&_nc_gid=BRefwOhIurtMAoEbV1pqYQ&_nc_ss=7a22e&oh=00_AQOHW1ofPQa3o6qA2t9_ofiU0LBjHMRrsCn3qIjScDIzkg&oe=6AC0C87D" }
+            { id: 1, name: "Disponible chez nous🙂‍↔️, très bon qualité 😝🩷", price: "Contact for price", image: "https://scontent-waw2-1.cdninstagram.com/v/t51.82787-15/784693925_17899006824576744_6861212227963224028_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=Mzk3MDAxMjE0Nzk2NjcwMjIxMA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMzM5Ni5zZHIucmVndWxhcl9waG90by5DMiJ9&_nc_ohc=2ir74motCBEQ7kNvwGiwr3-&_nc_oc=AdpcxTRH4gzxlXGc8xFi8JXRlopLtn1NSSTIaT2gt7EGhalBvIUxk9vCKQZ4pq55leE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-waw2-1.cdninstagram.com&_nc_gid=-OOH_P5b0LeHUU284JZIzw&_nc_ss=7a22e&oh=00_AQPutYKQkI5qDkND3csfApG1SY__KokaUqwJOS4aMhAHgg&oe=6AC0DE7E" },
+            { id: 2, name: "💔🥲😂.", price: "Contact for price", image: "https://instagram.fsyd10-2.fna.fbcdn.net/v/t51.82787-15/806271285_17902174173576744_2061529964014738892_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ig_cache_key=Mzk4NDA1OTA1ODgzNzEwODEwNjE3OTAyMTc0MTY3NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=ukHtwzUvMFwQ7kNvwHIX84K&_nc_oc=Adq-_IRsUDhoJsYe8xdreI-l3LhSVMReq3tdxpL_dxzac-unqf0kHBKOaZv-j9d44TI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fsyd10-2.fna&_nc_gid=k-26JnYjrQYxsJDBAvOZqw&_nc_ss=7a22e&oh=00_AQMNaxCpgSkNdXCEOqo-0GPLXcGCMB077mU7cHCKcz9xQg&oe=6AC0C089" },
+            { id: 3, name: "Ghir 120alf🥲❤️", price: "120 DA", image: "https://instagram.fbhx1-1.fna.fbcdn.net/v/t51.82787-15/825277056_17904804885576744_2643499100724783730_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ig_cache_key=Mzk5NTY2OTExMTkxNDUyNTUzOTE3OTA0ODA0ODc5NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=zRjRBSKjZpMQ7kNvwGWGrN_&_nc_oc=AdoMt0ueMwsi-TgM_zpxzy5mwgzox7diV5F5qOh3q4U0D-Eo-dDguhNW0LTx4vauIC8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fbhx1-1.fna&_nc_gid=t1AHdzDZmF2verlYBp4NPw&_nc_ss=7a22e&oh=00_AQNhnJHJaGcsS4IrwyoXpmq5So5an33R6rem1_2-IG7TxA&oe=6AC0DEA4" },
+            { id: 4, name: "Akhlelele😂😍🩷", price: "Contact for price", image: "https://instagram.fyyc3-1.fna.fbcdn.net/v/t51.82787-15/791245674_17900535417576744_6015253812744676184_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ig_cache_key=Mzk3Njg4OTI3MDIyODUwMjIxOTE3OTAwNTM1NDExNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=Mj6ImOGYMrQQ7kNvwGWmceP&_nc_oc=AdoHDHpXA9VkCHHDhjd-acyl31EDHyGvNlhnHRMq96rB9l8RfunWOE8osNpDGgxWVFLv3h1NJsizijOK8fof8XyH&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fyyc3-1.fna&_nc_gid=oKTCQM9UEuAzifCthqrEMA&_nc_ss=7a22e&oh=00_AQP07Rwm3gyr4_rIHCblrCI6iVuqExSvAirsCjb5fhvL0Q&oe=6AC0D676" },
+            { id: 5, name: "Ghir b 120alf😍🩷", price: "120 DA", image: "https://scontent-hou1-1.cdninstagram.com/v/t51.82787-15/790240131_17900377671576744_4263180396549356048_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=100&ig_cache_key=Mzk3NjE2MzI3MDE3MTU5NDI3ODE3OTAwMzc3NjY4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=hmdDf_ETBHwQ7kNvwHFCneK&_nc_oc=AdqiKHYw2WwZu_v9HYE4VuD3mbUN_LZSLLuqsY5nuoYJUR2_JET8aBNkjnUSGG7CA3A&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-hou1-1.cdninstagram.com&_nc_gid=SzRObcPaCd4COPOq86BVxg&_nc_ss=7a22e&oh=00_AQMBnpssEUuxfEd64PlkgpEaE_FXEr2SB3pma8JBqRvsBQ&oe=6AC0B17E" },
+            { id: 6, name: "Ooh my god😍🩷🩷", price: "Contact for price", image: "https://scontent-gmp1-1.cdninstagram.com/v/t51.82787-15/786971497_17899385301576744_451320607728126681_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=103&ig_cache_key=Mzk3MTc1NTQ0Njc1NDcxOTkzMTE3ODk5Mzg1Mjk4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=UUlmB6WLGt0Q7kNvwE39AYC&_nc_oc=Adqw5U4VYMNBe7oTL7cAmx6SMhL2znzIF2gN2uZ1bHEl5bPBcyMIJjPUwxFysPlq2ZM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_gid=OSIun1x1Nq3c4_5kMeh_XA&_nc_ss=7a22e&oh=00_AQODyglMgXxJo7FUJdsRNsPplMQwAinAqDLUvIvIfCPBIw&oe=6AC0D521" },
+            { id: 7, name: "1200da/1500da😍sel3a louz🩷", price: "1200 DA", image: "https://instagram.fbne5-1.fna.fbcdn.net/v/t51.82787-15/777418577_17898205023576744_2621212603589882355_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&ig_cache_key=Mzk2NjcyNTk3MDg1MzQxOTg5OTE3ODk4MjA1MDIwNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=HZKqO_ajamsQ7kNvwFtPYI7&_nc_oc=Adq2oQJR6GHqPNvaK6Oo76Wcei-kIovcaGuRmyYGTtY2062tZrHo1b66avJugrbUfe0OzSy3NIlA9d0mnFp8Xeej&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fbne5-1.fna&_nc_gid=xBKvwFeYCgyV3B5WS2N75w&_nc_ss=7a22e&oh=00_AQN7HtKpgl_QD-c1GJNyygaz-U5PDwaZq0vyrfMEWMrfZQ&oe=6AC0D8F4" },
+            { id: 8, name: "100elf😍✨", price: "100 DA", image: "https://instagram.fcdg3-1.fna.fbcdn.net/v/t51.82787-15/805876875_17902173870576744_3569723152864134102_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ig_cache_key=Mzk4NDA1ODI0MzEyNjY5OTI4MTE3OTAyMTczODY0NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=TSrnGzQz7nEQ7kNvwEmqW8v&_nc_oc=AdrI3u-XfD2luXr_rgnkD7VJfIkSnRHwP3pKCrlr_1qUIhdPQif7Jx5kMFGijC8T8Mk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fcdg3-1.fna&_nc_gid=Fg9EA3fjXea7i_2RdBG1Qg&_nc_ss=7a22e&oh=00_AQOhqxcm7nTQ0y5wnKs5d0YMPLEwZSkKJkw8pMpANhh0pw&oe=6AC0C87D" },
+            { id: 9, name: "Ghir b 80alf😍❤️", price: "Contact for price", image: "https://scontent-lhr11-1.cdninstagram.com/v/t51.82787-15/806428375_17902254891576744_833500819527877082_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=104&ig_cache_key=Mzk4NDQzNDI5ODgzODcxODYxNTE3OTAyMjU0ODg4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=jXGwEgoSuE8Q7kNvwH5TJNk&_nc_oc=AdoBz6psVmMGAi8Ib6WP-DaF5vndRTJp4Ps22gtfn_KL_cOa-LoaY8MmSdjYSotjIjg&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lhr11-1.cdninstagram.com&_nc_gid=1dN-dQkzv1zE9Andin7-Yw&_nc_ss=7a22e&oh=00_AQN1IKIeh4GvvrHC2kgmZj4H82UlQiWgYoWvT0pvIXgjpQ&oe=6AC0B1A6" },
+            { id: 10, name: "Galbi rah medhrar😩😂🩷", price: "Contact for price", image: "https://instagram.fhnd3-1.fna.fbcdn.net/v/t51.82787-15/786827890_17899315866576744_5813729824801496665_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=111&ig_cache_key=Mzk3MTQ1ODA2ODczODkzNjkwNTE3ODk5MzE1ODYzNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjU3Ni5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=xNnedfz6leoQ7kNvwHcdRi9&_nc_oc=AdoC668X9MN6jXmtSEEuZiiz7mjl3rOvd170pCMo6z9vDiW4uj3Wka9A-0DB_TqtB9GMuoF3Zn0XsxMN60ezp4xK&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fhnd3-1.fna&_nc_gid=wffSxpdsdylPxb5M8qiuKg&_nc_ss=7a22e&oh=00_AQMLO7ZvPYdalIpDkyQoC23sLMGE99LwkbiDiC0p7ED-Jw&oe=6AC0E0D9" },
+            { id: 11, name: "🩷😍", price: "Contact for price", image: "https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/783205227_17898614013576744_6258387615486471338_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=Mzk2ODE3NjIxOTY2MDc4NDk3MA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMzA3Mi5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=SfI6kLSCbI4Q7kNvwHViVpe&_nc_oc=Adr9v3EulYGwmLxeWeT52QfI92Bw98feIjUTG2iGW52T0RMN7NVNsxYn-wqS6FarkYM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=eKwPSN6PIU7t7rQ13tpwUA&_nc_ss=7a22e&oh=00_AQPy5tzSQU_xhO5hDDpVaxpg8oK0P9xRUC5dgqJwWngiLQ&oe=6AC0C814" },
+            { id: 12, name: "Cheba ya cheba🩷😍", price: "Contact for price", image: "https://scontent-itm1-1.cdninstagram.com/v/t51.82787-15/777381618_17898614298576744_3672290953556770459_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ig_cache_key=Mzk2ODE3NjYwMzU0ODY3OTE2MDE3ODk4NjE0MjkyNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=s3DeK0AeI40Q7kNvwF6zN1N&_nc_oc=Adp8juh_ynqZjml3zi_E7xyKQCT3Lx5MdWaCyznkvDYF8pQ3QKjw_R1HNB6gJd5JMbw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&_nc_gid=5-GURsF8y3AkAQDtpHBMag&_nc_ss=7a22e&oh=00_AQPB64T2rxNHI9dGxspTzC0w13CLtzJPlgu9ZEZNgq9JYw&oe=6AC0BB14" }
         ];
 
         function renderProducts() {
-            const container = document.getElementById('product-grid-container');
-            container.innerHTML = products.map(p => `
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map(p => `
                 <div class="product-card">
-                    <img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy">
+                    <div class="product-img-container">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy">
+                    </div>
                     <div class="product-info">
-                        <div>
-                            <div class="product-name">${p.name}</div>
-                            <div class="product-price">${p.price}</div>
-                        </div>
-                        <button class="btn" onclick="orderProduct('${escapeHtml(p.name)}')">Order Now</button>
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-price">${p.price}</div>
+                        <button class="btn" onclick="orderProduct('${encodeURIComponent(p.name)}')">Order Now</button>
                     </div>
                 </div>
             `).join('');
-        }
-
-        function escapeHtml(text) {
-            return text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
         }
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
 
-            document.getElementById('page-' + pageId).classList.add('active');
-            const navLink = document.getElementById('nav-' + pageId);
+            document.getElementById(`page-${pageId}`).classList.add('active');
+            const navLink = document.getElementById(`nav-${pageId}`);
             if (navLink) navLink.classList.add('active');
 
             window.scrollTo(0, 0);
         }
 
         function orderProduct(productName) {
-            document.getElementById('productName').value = productName;
+            const decodedName = decodeURIComponent(productName);
+            document.getElementById('productName').value = decodedName;
             showPage('order');
         }
 
@@ -433,22 +482,22 @@
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('phone').value;
             const wilaya = document.getElementById('wilaya').value;
-            const qty = document.getElementById('quantity').value;
+            const quantity = document.getElementById('quantity').value;
 
-            const text = `Hello glam_era40, I would like to place an order:%0A%0A- Product: ${product}%0A- Quantity: ${qty}%0A- Name: ${name}%0A- Phone: ${phone}%0A- Wilaya: ${wilaya}%0A%0AI have checked the BaridiMob payment details and will attach the receipt.`;
+            const message = `Hello glam_era40, I want to place an order:%0A%0A- Product: ${product}%0A- Name: ${name}%0A- Phone: ${phone}%0A- Wilaya/City: ${wilaya}%0A- Quantity: ${quantity}%0A%0APlease confirm my order!`;
             
-            window.open(`https://wa.me/?text=${text}`, '_blank');
+            window.open(`https://wa.me/?text=${message}`, '_blank');
         }
 
-        // Initialize Products on Load
-        window.addEventListener('DOMContentLoaded', () => {
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
-
-            // Handle potential URL params or initial hashes if needed
+            
+            // Check query params for product pre-fill
             const urlParams = new URLSearchParams(window.location.search);
-            const prodParam = urlParams.get('product');
-            if(prodParam) {
-                orderProduct(prodParam);
+            const productParam = urlParams.get('product');
+            if (productParam) {
+                orderProduct(productParam);
             }
         });
     </script>

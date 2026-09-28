@@ -3,504 +3,518 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>glam_era40</title>
+    <title>glam_era40 - Online Shop</title>
     <style>
         :root {
-            --primary-color: #ff3366;
-            --primary-dark: #e02454;
-            --bg-color: #fafafa;
+            --primary: #ff477e;
+            --primary-dark: #e0356c;
+            --accent: #ff85a1;
+            --bg-color: #fff0f3;
             --card-bg: #ffffff;
-            --text-color: #222222;
-            --text-light: #777777;
-            --border-color: #eeeeee;
+            --text-color: #2b2b2b;
+            --text-light: #666666;
+            --border-color: #ffccd5;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            letter-spacing: 1px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-
-        .product-img-container {
-            width: 100%;
-            height: 250px;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .placeholder-img {
-            color: var(--text-light);
-            font-size: 3rem;
-        }
-
-        .product-info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .product-name {
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--text-color);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-price {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .buy-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s;
-        }
-
-        .buy-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-        }
-
-        .instagram-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .instagram-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(255, 71, 126, 0.1);
             z-index: 1000;
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Page Layout */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+            padding-bottom: 60px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LANDING PAGE */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--bg-color), #ffe3ed);
         }
 
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .reviews-section {
+            padding: 4rem 2rem;
+            background-color: white;
+            text-align: center;
+        }
+
+        .reviews-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .review-card {
+            background: var(--bg-color);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 500px;
+            border-radius: 8px;
+            text-align: left;
+            font-style: italic;
             color: var(--text-light);
         }
 
-        .modal h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            font-size: 1.5rem;
+        /* PRODUCTS PAGE */
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
         }
 
-        .payment-details {
-            background-color: var(--bg-color);
-            padding: 15px;
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .order-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
             border-radius: 6px;
-            margin-bottom: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .order-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* ORDER PAGE */
+        .order-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .order-form-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
         }
 
-        .payment-details p {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
+        .order-form-card h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
-        .payment-details span {
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            user-select: all;
+            font-size: 0.9rem;
         }
 
-        .instructions {
-            margin-bottom: 20px;
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
         }
 
-        .instructions ol {
-            padding-left: 20px;
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary);
+        }
+
+        .payment-box {
+            background: var(--bg-color);
+            border: 1px dashed var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .payment-box h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .payment-box p {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .payment-box ul {
+            margin-left: 1.2rem;
             font-size: 0.9rem;
             color: var(--text-light);
+            margin-top: 0.5rem;
         }
 
-        .instructions li {
-            margin-bottom: 5px;
+        .payment-box li {
+            margin-bottom: 0.3rem;
         }
 
-        .whatsapp-btn {
-            display: block;
+        .submit-order-btn {
+            width: 100%;
             background-color: #25D366;
             color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-order-btn:hover {
+            background-color: #20ba5a;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
             text-align: center;
-            padding: 12px;
-            border-radius: 4px;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.2s;
         }
 
-        .whatsapp-btn:hover {
-            background-color: #1ebe5d;
-        }
-
-        @media (max-width: 600px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .product-img-container {
-                height: 180px;
-            }
-            .product-info {
-                padding: 10px;
-            }
-            .product-name {
-                font-size: 0.85rem;
-            }
-            .product-price {
-                font-size: 1rem;
-            }
-            .buy-btn {
-                padding: 8px;
-                font-size: 0.85rem;
-            }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>glam_era40</h1>
-    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <a class="nav-brand" onclick="showPage('home')">glam_era40</a>
+        <ul class="nav-links">
+            <li><a id="nav-home" onclick="showPage('home')" class="active">Home</a></li>
+            <li><a id="nav-products" onclick="showPage('products')">Products</a></li>
+            <li><a id="nav-order" onclick="showPage('order')">Order</a></li>
+        </ul>
+    </nav>
 
-    <div class="container">
-        <div class="product-grid">
-            
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">🩷</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Disponible chez nous🙂‍↔️, très bon qualité 😝🩷</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Disponible chez nous🙂‍↔️, très bon qualité 😝🩷', 'Contact for price')">Buy Now</button>
-                </div>
+    <!-- PAGE 1: LANDING -->
+    <div id="page-home" class="page active">
+        <div class="hero">
+            <h1>glam_era40</h1>
+            <p>Welcome to our Online Shop! Discover our exclusive selection of trending items curated just for you. Shop now and elevate your style effortlessly.</p>
+            <button class="btn" onclick="showPage('products')">Shop Now</button>
+        </div>
+        <div class="reviews-section">
+            <h2>Customer Reviews</h2>
+            <div class="review-card">
+                "No reviews yet"
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">🩷</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">🩷😍</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('🩷😍', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">✨</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">100elf😍✨</div>
-                        <div class="product-price">100 DA</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('100elf😍✨', '100 DA')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">🩷</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Ooh my god😍🩷🩷</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Ooh my god😍🩷🩷', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 5 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">❤️</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Ghir 120alf🥲❤️</div>
-                        <div class="product-price">120 DA</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Ghir 120alf🥲❤️', '120 DA')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 6 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">❤️</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Ghir b 80alf😍❤️</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Ghir b 80alf😍❤️', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 7 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">😂</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Akhlelele😂😍🩷</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Akhlelele😂😍🩷', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 8 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">💔</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">💔🥲😂.</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('💔🥲😂.', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 9 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">😩</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Galbi rah medhrar😩😂🩷</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Galbi rah medhrar😩😂🩷', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 10 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">🩷</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">1200da/1500da😍sel3a louz🩷</div>
-                        <div class="product-price">1200 DA</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('1200da/1500da😍sel3a louz🩷', '1200 DA')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 11 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">🩷</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Ghir b 120alf😍🩷</div>
-                        <div class="product-price">120 DA</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Ghir b 120alf😍🩷', '120 DA')">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Product 12 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="placeholder-img">🩷</span>
-                </div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Cheba ya cheba🩷😍</div>
-                        <div class="product-price">Contact for price</div>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('Cheba ya cheba🩷😍', 'Contact for price')">Buy Now</button>
-                </div>
-            </div>
-
         </div>
     </div>
 
+    <!-- PAGE 2: PRODUCTS -->
+    <div id="page-products" class="page">
+        <div class="products-container">
+            <div class="products-grid" id="product-grid">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: ORDER -->
+    <div id="page-order" class="page">
+        <div class="order-container">
+            <div class="order-form-card">
+                <h2>Complete Your Order</h2>
+                <form id="whatsappForm" onsubmit="submitOrder(event)">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" readonly required style="background-color: #f5f5f5;">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" id="customerName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="wilaya">Wilaya / City</label>
+                        <input type="text" id="wilaya" placeholder="Enter your wilaya or city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" value="1" min="1" required>
+                    </div>
+
+                    <div class="payment-box">
+                        <h3>BaridiMob Payment Details</h3>
+                        <p><strong>RIP:</strong> 00799999002233445566</p>
+                        <p><strong>CCP:</strong> 0022334455</p>
+                        <p><strong>Key:</strong> 66</p>
+                        <ul>
+                            <li>Step 1: Open your BaridiMob application.</li>
+                            <li>Step 2: Transfer the exact product amount to the RIP/CCP above.</li>
+                            <li>Step 3: Save the payment receipt / screenshot.</li>
+                            <li>Step 4: Click the button below to confirm via WhatsApp and send your receipt.</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="submit-order-btn">Confirm Order via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <a href="https://instagram.com/glam_era40" target="_blank" class="instagram-link">Instagram: @glam_era40</a>
+        <p>Follow us on Instagram: <a href="https://instagram.com/glam_era40" target="_blank">@glam_era40</a></p>
     </footer>
 
-    <!-- Payment Modal -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>BaridiMob Payment</h2>
-            
-            <div class="payment-details">
-                <p><strong>RIP:</strong> <span id="ripText">00799999002233445566</span></p>
-                <p><strong>CCP:</strong> <span id="ccpText">0022334455</span></p>
-                <p><strong>Key:</strong> <span id="keyText">66</span></p>
-            </div>
-
-            <div class="instructions">
-                <ol>
-                    <li>Open your BaridiMob application.</li>
-                    <li>Transfer the exact amount to the RIP/CCP provided above.</li>
-                    <li>Take a screenshot of the payment receipt.</li>
-                    <li>Click the button below to send confirmation via WhatsApp.</li>
-                </ol>
-            </div>
-
-            <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">Confirm via WhatsApp</a>
-        </div>
-    </div>
-
     <script>
-        function openModal(productName, productPrice) {
-            const modal = document.getElementById('paymentModal');
-            const whatsappLink = document.getElementById('whatsappLink');
-            
-            const message = `Hello glam_era40, I want to buy:\nProduct: ${productName}\nPrice: ${productPrice}\n\nHere is my BaridiMob payment receipt:`;
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Note: Replace with actual WhatsApp number if available, currently formatted for generic use
-            whatsappLink.href = `https://wa.me/?text=${encodedMessage}`;
-            
-            modal.style.display = 'flex';
+        const products = [
+            { id: 1, name: "1200da/1500da😍sel3a louz🩷", price: "1200 DA", img: "https://scontent-ams2-1.cdninstagram.com/v/t51.82787-15/777418577_17898205023576744_2621212603589882355_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ig_cache_key=Mzk2NjcyNTk3MDg1MzQxOTg5OTE3ODk4MjA1MDIwNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=HZKqO_ajamsQ7kNvwFVhHmv&_nc_oc=AdoMUmX03m26izRX_9_134PWE0v6KOcQyPoM5LuqnWmCgIE6EAYHs1oGT6JiUGdbC1frdltOgtbkkgMABrVMYZnR&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=7zHYDDUf-b4JpyF-7rUG-Q&_nc_ss=7a22e&oh=00_AQP9b1F9niieJThZQWnxC3vLLFgdyj4Uds-vrEyZIL3RoQ&oe=6AC0D8F4" },
+            { id: 2, name: "Ghir b 120alf😍🩷", price: "120 DA", img: "https://scontent-dus1-1.cdninstagram.com/v/t51.82787-15/790240131_17900377671576744_4263180396549356048_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=100&ig_cache_key=Mzk3NjE2MzI3MDE3MTU5NDI3ODE3OTAwMzc3NjY4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhcWUuQzMifQ%3D%3D&_nc_ohc=hmdDf_ETBHwQ7kNvwEdECSN&_nc_oc=AdqxnXRsUKabt-DtZWfmOcyG0SH2jNG41q7n8Xx3ZzFwFQdLy_ANLFXICQtyZ_ZL6FfzB49QFSfMZBijSoEmD425&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-dus1-1.cdninstagram.com&_nc_gid=TlqF5W41im9H0wBnf1fKKg&_nc_ss=7a22e&oh=00_AQOd6sWsDhzrFXxQNF_iUtdOiah9Gtt1CowWQPpTrWSp9g&oe=6AC0B17E" },
+            { id: 3, name: "Ghir 120alf🥲❤️", price: "120 DA", img: "https://instagram.fyxd1-1.fna.fbcdn.net/v/t51.82787-15/825277056_17904804885576744_2643499100724783730_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&_nc_map=urlgen_bucketless&ig_cache_key=Mzk5NTY2OTExMTkxNDUyNTUzOTE3OTA0ODA0ODc5NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=zRjRBSKjZpMQ7kNvwFQ3kCz&_nc_oc=Adr_FLZaRekkBy2Z7Pp1DePGg3MO4NIb7CsOdhVlX90LZz9Y1DWNy9LNRPPDBHbJq7vCDD7bGcc8goo9xA0otqXw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fyxd1-1.fna&_nc_gid=0I3T_a4P-WRlUyv1pcJbfw&_nc_ss=7a22e&oh=00_AQOv58gzpw8w4DzwfqbQaYrfHR2LDV9wG_mtpuahs6lNtg&oe=6AC0DEA4" },
+            { id: 4, name: "💔🥲😂.", price: "Contact for price", img: "https://instagram.flhr4-3.fna.fbcdn.net/v/t51.82787-15/806271285_17902174173576744_2061529964014738892_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ig_cache_key=Mzk4NDA1OTA1ODgzNzEwODEwNjE3OTAyMTc0MTY3NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhcWUuQzMifQ%3D%3D&_nc_ohc=ukHtwzUvMFwQ7kNvwEFjtgu&_nc_oc=AdrrRoX-Azr1XufuxyoSiQAsMSdACZ1A99RIL6qjhx9Kqlk_90rqadX0cM9eaFGfpls&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.flhr4-3.fna&_nc_gid=jq-qmIBLj_p1War0TED_uQ&_nc_ss=7a22e&oh=00_AQMOxPbEopj_NPidWeNFCFL9X2s7x2hsjoNvce52Bnb1OA&oe=6AC0C089" },
+            { id: 5, name: "Akhlelele😂😍🩷", price: "Contact for price", img: "https://instagram.fman1-2.fna.fbcdn.net/v/t51.82787-15/791245674_17900535417576744_6015253812744676184_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=102&ig_cache_key=Mzk3Njg4OTI3MDIyODUwMjIxOTE3OTAwNTM1NDExNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhcWUuQzMifQ%3D%3D&_nc_ohc=Mj6ImOGYMrQQ7kNvwGJ1dbp&_nc_oc=AdpxqeZQeYVDOl2UHReFNEuyj4Be_jnVLufY0V3GdCQ5QSDWoKkhV3UWP5E_5VeXLPM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fman1-2.fna&_nc_gid=viOMiMW0BcguD6Bf94YSsw&_nc_ss=7a22e&oh=00_AQPUrHxKXSZqeMk5VLZyihsLS-cDSQ7tXoD10g628DN_mA&oe=6AC0D676" },
+            { id: 6, name: "Ooh my god😍🩷🩷", price: "Contact for price", img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/786971497_17899385301576744_451320607728126681_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=103&ig_cache_key=Mzk3MTc1NTQ0Njc1NDcxOTkzMTE3ODk5Mzg1Mjk4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=UUlmB6WLGt0Q7kNvwFlxbsv&_nc_oc=Adqa0U3kDkj8qMTWWlURH_8JVaMvPoQ8qPSN44AwL1wwFaqem5oPhFaUwxdKMG3qaJg&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=H8MLgDsuCGc1mI4j4r8cQw&_nc_ss=7a22e&oh=00_AQPEPc1rlyyrN43A9EUxhGP7dh_iwdJKfpLCNCyrO_kIGQ&oe=6AC0D521" },
+            { id: 7, name: "100elf😍✨", price: "100 DA", img: "https://scontent-waw2-1.cdninstagram.com/v/t51.82787-15/805876875_17902173870576744_3569723152864134102_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&ig_cache_key=Mzk4NDA1ODI0MzEyNjY5OTI4MTE3OTAyMTczODY0NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhcWUuQzMifQ%3D%3D&_nc_ohc=TSrnGzQz7nEQ7kNvwF-kjHl&_nc_oc=AdqG98ZFp3cHZqdSQ_2M4Yv-V6Ea9JE5ePYsO75mJudKG0K7dAEy7iUm1m6zjiv3cF0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-waw2-1.cdninstagram.com&_nc_gid=OHNiyEaPCPvkSBIMJ5o-YA&_nc_ss=7a22e&oh=00_AQPg4qXlTbbUfwwCv2LJzSslEt2kIWuCKje6H1WYA7vZKg&oe=6AC0C87D" },
+            { id: 8, name: "Cheba ya cheba🩷😍", price: "Contact for price", img: "https://instagram.fmad6-1.fna.fbcdn.net/v/t51.82787-15/777381618_17898614298576744_3672290953556770459_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&ig_cache_key=Mzk2ODE3NjYwMzU0ODY3OTE2MDE3ODk4NjE0MjkyNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEyODQuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhcWUuQzMifQ%3D%3D&_nc_ohc=s3DeK0AeI40Q7kNvwGlsmQZ&_nc_oc=AdqvMVCSQOQk9YgeexfJtDTjrMPu6sKcYTA6BjONGR-cmP6PMnaMpUcFd98UbuNmRDE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmad6-1.fna&_nc_gid=FxNdhXiUZJxw5ijPTyTFGA&_nc_ss=7a22e&oh=00_AQPR_YqJ_I0d_gTeAwzAfaOzh-6AayrjRWofCGJaA7_i1w&oe=6AC0BB14" },
+            { id: 9, name: "Ghir b 80alf😍❤️", price: "Contact for price", img: "https://scontent-cdg4-1.cdninstagram.com/v/t51.82787-15/806428375_17902254891576744_833500819527877082_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=104&ig_cache_key=Mzk4NDA1NDI5ODgzODcxODYxNTE3OTAyMjU0ODg4NTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjcyMC5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=jXGwEgoSuE8Q7kNvwEYITMz&_nc_oc=AdouUBTxvrkEoMRs1nM_pvR-8HjYpTXE-20b8xUfPNn07a7Ox2SyXpo8voLlSClpr2Fd2WVrz8lnCaJ46Xft2m6D&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-cdg4-1.cdninstagram.com&_nc_gid=_MY5pKNUZBIeq0P0qVcbhA&_nc_ss=7a22e&oh=00_AQN83GLUEwt9yB8oza-9bX-OQ1Ilab4unPYiSctQ_si_9g&oe=6AC0B1A6" },
+            { id: 10, name: "🩷😍", price: "Contact for price", img: "https://scontent-nrt1-1.cdninstagram.com/v/t51.82787-15/783205227_17898614013576744_6258387615486471338_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=Mzk2ODE3NjIxOTY2MDc4NDk3MA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMzA3Mi5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=SfI6kLSCbI4Q7kNvwEpagr1&_nc_oc=Adoy2rcnPZrCzMonkaRUUc6etg08CHjzSKrgkpNPS0HWhmu9cVZVXugkEPtS3v_cnDXmyZs72tGlYIHOkh6e93F_&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-nrt1-1.cdninstagram.com&_nc_gid=J2S2rtWj62e-z2frNRDDQw&_nc_ss=7a22e&oh=00_AQNi_kEZITvmUsU_1U8hPadnn_71zcXS7_sBh9JY35pEng&oe=6AC0C814" },
+            { id: 11, name: "Disponible chez nous🙂‍↔️, très bon qualité 😝🩷", price: "Contact for price", img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/784693925_17899006824576744_6861212227963224028_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=Mzk3MDAxMjE0Nzk2NjcwMjIxMA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMzM5Ni5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=2ir74motCBEQ7kNvwFdbbZu&_nc_oc=AdpQztDhZEWb8coH1CRpzIOZc3bT_m3XSefQ1Zj9hNILua2N0COkPE3U7rIV-ov4Te84rasX7PSYu4YQEy40Thhx&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=k5CWXbIb-mZd_-Cx__seVQ&_nc_ss=7a22e&oh=00_AQMC85GW0ePtQJsNSyXm7BQbBUQUtkEYyJ_5nQySK2tCJw&oe=6AC0DE7E" },
+            { id: 12, name: "Galbi rah medhrar😩😂🩷", price: "Contact for price", img: "https://scontent-dus1-1.cdninstagram.com/v/t51.82787-15/786827890_17899315866576744_5813729824801496665_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=111&ig_cache_key=Mzk3MTQ1ODA2ODczODkzNjkwNTE3ODk5MzE1ODYzNTc2NzQ0.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjU3Ni5zZHIudmlkZW9fZGVmYXVsdF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=xNnedfz6leoQ7kNvwGkU3Xv&_nc_oc=AdrpQ7AcY6Uz8DBQ1K9OxvoNjb2ZOlrxcUkq4uSStce6NoQ2GMhRlQGMrZktbOkI8T4xTOnnz-kdFvLVUxT4rrBq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-dus1-1.cdninstagram.com&_nc_gid=IRphUDJCAcGMQxBp513G3A&_nc_ss=7a22e&oh=00_AQPB9dD-G1qdSEyTfMs7x3YA4VpdxIxhoqTNG0F_3OvX9Q&oe=6AC0E0D9" }
+        ];
+
+        // Render products
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-footer">
+                            <span class="product-price">${p.price}</span>
+                            <button class="order-btn" onclick="orderProduct('${encodeURIComponent(p.name)}')">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('paymentModal');
-            modal.style.display = 'none';
+        // Navigation Page Switcher
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            
+            document.getElementById('page-' + pageId).classList.add('active');
+            const navLink = document.getElementById('nav-' + pageId);
+            if(navLink) navLink.classList.add('active');
+            
+            window.scrollTo(0, 0);
         }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('paymentModal');
-            if (event.target == modal) {
-                closeModal();
+        // Order Product handler
+        function orderProduct(encodedName) {
+            const name = decodeURIComponent(encodedName);
+            document.getElementById('productName').value = name;
+            showPage('order');
+        }
+
+        // WhatsApp Form Submit
+        function submitOrder(e) {
+            e.preventDefault();
+            const product = document.getElementById('productName').value;
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('phone').value;
+            const wilaya = document.getElementById('wilaya').value;
+            const qty = document.getElementById('quantity').value;
+
+            const message = `Hello glam_era40, I want to place an order:%0A%0A*Product:* ${product}%0A*Quantity:* ${qty}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Wilaya:* ${wilaya}%0A%0AI have paid via BaridiMob and attached my receipt.`;
+            
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+        }
+
+        // Check URL parameters on load for direct query routing
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            const urlParams = new URLSearchParams(window.location.search);
+            const productParam = urlParams.get('product');
+            if (productParam) {
+                orderProduct(productParam);
             }
-        }
+        });
     </script>
 </body>
 </html>
